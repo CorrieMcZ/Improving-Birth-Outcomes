@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>National Improving Birth Outcomes Meeting</title>
+<title>National Improving Birth Outcomes Initiatives</title>
 <style>
 @import url(d3.parsets.css);
 
@@ -70,35 +70,34 @@ pre, code { font-family: "Menlo", monospace; }
 </style>
 
 <body>
-<h1>Parallel Sets</h1>
-<p class="meta">A visualisation technique for multidimensional categorical data.
 
-<h2>National Improving Birth Outcomes Meeting</h2>
+<h2>National Improving Birth Outcomes Initiatives</h2>
 <div id="vis"><noscript><img src="parsets.png"></noscript></div>
 <div class="options">
-  <span class="source">Adapted from: <a href="http://www.jasondavies.com/parallel-sets/">Jason Davies</a>.</span>
-  <span class="source">Data: <a href="http://www.amstat.org/publications/jse/v3n3/datasets.dawson.html">Robert J. MacG. Dawson</a>.</span>
-  <span class="curves"><label for="curved"><input type="checkbox" id="curved" onchange="curves.call(this)"> Curves?</label></span>
+  <span class="curves"><label for="curved"><input type="checkbox" id="curved" onchange="curves.call(this)"> Curves?</label></span>&nbsp;&nbsp;&nbsp;
+  <span class="curves"><label for="icicle"><input type="checkbox" id="icicle"> Show icicle plot</label></span>&nbsp;&nbsp;&nbsp;
+  <span class="curves"><label for="slow"><input type="checkbox" id="slow" onchange="vis.call(chart.duration(this.checked ? 5000 : 500))"> Go slow</label></span>
 </div>
 
 <h2>Explanation</h2>
-<p>I need to tchange this. For each dimension (state,initiative,type), a horizontal bar is shown for each of its possible categories.  The width of the bar denotes the absolute number of matches for that category.
-<p>Starting with the first dimension (State), each of its categories is connected to a number of categories in the next dimension, showing how that category is subdivided. This subdividing is repeated recursively, producing a tree of “ribbons”.
+
+<p>For each dimension (region, initiative, type), a horizontal bar is shown for each of its possible categories.  The width of the bar denotes the absolute number of matches for that category.
+
+<p>Starting with the first dimension (region), each of its categories is connected to a number of categories in the next dimension, showing how that category is subdivided. This subdividing is repeated recursively, producing a tree of “ribbons."
+
 <p>In fact, you can imagine Parallel Sets as being an icicle plot, with icicles of the same category being “bundled” together.
-<p style="text-align: center"><label for="icicle" style="font-style: italic"><input type="checkbox" id="icicle"> Show icicle plot!</label>
+
 <p>Drag the dimensions and categories to reorder them. You can also click the “alpha” or “size” links that appear next to the dimension name on mouseover, to order the categories by name or frequency.
 
-
-<p><label for="slow"><input type="checkbox" id="slow" onchange="vis.call(chart.duration(this.checked ? 5000 : 500))"> Go slow!</label>
+<p>
 <a href="https://github.com/brunosan/caro-vis/tree/gh-pages"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
-
 
 <script src="d3.v2.min.js"></script>
 <script src="d3.parsets.js"></script>
 <script src="highlight.min.js"></script>
 <script>
 var chart = d3.parsets()
-    .dimensions(["type","initiative","state"]);
+    .dimensions(["type","initiative","region"]);
 
 var vis = d3.select("#vis").append("svg")
     .attr("width", chart.width())
